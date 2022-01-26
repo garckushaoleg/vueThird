@@ -22,6 +22,9 @@ export default {
         removeTodo(id) {
             this.$emit('remove-todo', id)
         }
+    },
+    mounted() {
+        console.log(this.todos)
     }
 }
 </script>

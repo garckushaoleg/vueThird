@@ -9,7 +9,7 @@
 <router-link to="/">Home</router-link>
 <Loader v-if="loading" />
 <TodoList 
-  v-else-if="todos.length"
+  v-else-if="filteredTodos.length"
   v-bind:todos="filteredTodos" 
   @remove-todo="removeTodo"
 />
@@ -60,11 +60,11 @@ export default {
           }
 
           if (this.filter === 'completed') {
-              return this.todos.filter(t => t.computed)
+              return this.todos.filter(t => t.completed)
           }
 
           if (this.filter === 'not-completed') {
-              return this.todos.filter(t => t.computed)
+              return this.todos.filter(t => !t.completed)
           }
       }
   }
