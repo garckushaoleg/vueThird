@@ -20,6 +20,8 @@
 import TodoList from '@/components/TodoList'
 import AddTodo from '@/components/AddTodo'
 import Loader from '@/components/Loader'
+import _ from 'lodash';
+
 export default {
   name: 'App',
   components: {
@@ -35,10 +37,11 @@ export default {
     }
   },
   mounted() {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
+    fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
       .then(json => {
-          this.todos = json;
+          this.todos = _.filter(json, (todo) => todo.completed && todo.userId === 1);
+          console.log(this.todos)
           this.loading = false;
        })
   },
